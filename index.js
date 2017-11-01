@@ -74,7 +74,7 @@ restService.post('/insuranceinfo', function (req, res) {
     }
 
 
-    if (req.body.result.action == "CarInsurance.CarInsurance-no") {
+    if (req.body.result.action == "NoIntent") {
         return res.json({
             "followupEvent": {
                 "name": "WELCOME"
