@@ -42,7 +42,7 @@ restService.post('/insuranceinfo', function (req, res) {
         return res.json({
             speech: "successfully entered welcome intent",
             displayText: "successfully entered welcome intent",
-            source: 'insurance-bot'
+            source: 'insurance-bot',
             "messages": [
                 {
 
