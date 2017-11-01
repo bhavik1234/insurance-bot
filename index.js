@@ -62,9 +62,28 @@ restService.post('/insuranceinfo', function (req, res) {
                         },
                         {
                             "title": "Home"
+                        }
+                    ],
+                    "type": "suggestion_chips"
+                },
+                {
+
+                    "displayText": "Select one",
+                    "platform": "google",
+                    "textToSpeech": "Select One",
+                    "type": "simple_response"
+                },
+                {
+                    "platform": "google",
+                    "suggestions": [
+                        {
+                            "title": "Cars"
                         },
                         {
-                            "title": "Health"
+                            "title": "Bikes"
+                        },
+                        {
+                            "title": "Homes"
                         }
                     ],
                     "type": "suggestion_chips"
@@ -79,8 +98,6 @@ restService.post('/insuranceinfo', function (req, res) {
             "followupEvent": {
                 "name": "WELCOME"
             }
-                
-            
         });
     }
 
