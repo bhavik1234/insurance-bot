@@ -43,33 +43,33 @@ restService.post('/insuranceinfo', function (req, res) {
             speech: "successfully entered welcome intent",
             displayText: "successfully entered welcome intent",
             source: 'insurance-bot'
-            // "messages": [
-            //     {
+            "messages": [
+                {
 
-            //         "displayText": "Select one",
-            //         "platform": "google",
-            //         "textToSpeech": "Select One",
-            //         "type": "simple_response"
-            //     },
-            //     {
-            //         "platform": "google",
-            //         "suggestions": [
-            //             {
-            //                 "title": "Car"
-            //             },
-            //             {
-            //                 "title": "Bike"
-            //             },
-            //             {
-            //                 "title": "Home"
-            //             },
-            //             {
-            //                 "title": "Health"
-            //             }
-            //         ],
-            //         "type": "suggestion_chips"
-            //     }
-            // ]
+                    "displayText": "Select one",
+                    "platform": "google",
+                    "textToSpeech": "Select One",
+                    "type": "simple_response"
+                },
+                {
+                    "platform": "google",
+                    "suggestions": [
+                        {
+                            "title": "Car"
+                        },
+                        {
+                            "title": "Bike"
+                        },
+                        {
+                            "title": "Home"
+                        },
+                        {
+                            "title": "Health"
+                        }
+                    ],
+                    "type": "suggestion_chips"
+                }
+            ]
         });
     }
 })
