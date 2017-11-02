@@ -88,7 +88,7 @@ restService.post('/insuranceinfo', function (req, res) {
                 {
                     "items": [
                         {
-                            "description": "Premium Rs 10,000 \n"+age,
+                            "description": "Premium Rs 10,000 ",
                             "image": {
                                 "url": "http://static.sify.com/cms/image/ohvpxadacbjci.jpg"
                             },
@@ -102,7 +102,7 @@ restService.post('/insuranceinfo', function (req, res) {
                             "title": "Kotak Life Insurance"
                         },
                         {
-                            "description": "Option Two Description",
+                            "description": "Premium Rs 12000",
                             "image": {
                                 "url": "http://1.bp.blogspot.com/_5j_axJRogXw/TBNoyybUpyI/AAAAAAAAABU/mv77_DQxJhU/s1600/LIC_Logo.jpg"
                             },
@@ -113,7 +113,8 @@ restService.post('/insuranceinfo', function (req, res) {
                                     "object two"
                                 ]
                             },
-                            "title": "Option Two Title"
+                            "title": "LIC Life Insurance",
+                            "title": "LIC Life Insuranceee"
                         }
                     ],
                     "platform": "google",
