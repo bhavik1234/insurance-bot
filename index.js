@@ -167,9 +167,17 @@ restService.post('/insuranceinfo', function (req, res) {
     if (req.body.result.action == "download") {
         return res.json({
 
-            speech: "Go to the link",
-            displayText: "https://insurance-bott.herokuapp.com/download",
-            source: 'insurance-bot',
+            "messages": [
+                {
+                    "destinationName": "Destination Name",
+                    "platform": "google",
+                    "type": "Go to the link to download the file",
+                    "url": "https://insurance-bott.herokuapp.com/download"
+                }
+            ]
+            // speech: "Go to the link",
+            // displayText: "https://insurance-bott.herokuapp.com/download",
+            // source: 'insurance-bot',
             // "messages": [
             //     {
             //         "platform": "google",
