@@ -169,6 +169,13 @@ restService.post('/insuranceinfo', function (req, res) {
 
             "messages": [
                 {
+
+                    "displayText": "Hey",
+                    "platform": "google",
+                    "textToSpeech": "Hey",
+                    "type": "simple_response"
+                },
+                {
                     "destinationName": "Destination Name",
                     "platform": "google",
                     "type": "Go to the link to download the file",
