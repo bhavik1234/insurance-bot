@@ -84,14 +84,14 @@ restService.post('/insuranceinfo', function (req, res) {
         let burglary = req.body.result.parameters['Burglary'];
         let riskCovered = req.body.result.parameters['RiskCovered'];
         // JSON to CSV
-       var objs ={
+       let objs ={
            "age":age,
            "house": house,
            "burglary": burglary,
            "riskCovered": riskCovered
        };
-       var fields = ['age', 'house', 'burglary','riskCovered'];
-       var csv = json2csv({ data: objs, fields: fields });
+       let fields = ['age', 'house', 'burglary','riskCovered'];
+       let csv = json2csv({ data: objs, fields: fields });
        fs.writeFile('public/file.csv', csv, function (err) {
            if (err) throw err;
            console.log('file saved');
