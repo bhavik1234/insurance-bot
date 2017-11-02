@@ -41,7 +41,7 @@ restService.get('/demo/:brand', function (req, res) {
 
 //demo api
 restService.post('/insuranceinfo', function (req, res) {
-   
+
 
     //trending phone
 
@@ -79,33 +79,33 @@ restService.post('/insuranceinfo', function (req, res) {
 
     // Insurance Data
     if (req.body.result.action == "InsuranceData") {
-        let  age = req.body.result.parameters['Age'];
+        let age = req.body.result.parameters['Age'];
         let house = req.body.result.parameters['House'];
         let burglary = req.body.result.parameters['Burglary'];
         let riskCovered = req.body.result.parameters['RiskCovered'];
         // JSON to CSV
-       let objs ={
-           "age":age,
-           "house": house,
-           "burglary": burglary,
-           "riskCovered": riskCovered
-       };
-       let fields = ['age', 'house', 'burglary','riskCovered'];
-       let csv = json2csv({ data: objs, fields: fields });
-       fs.writeFile('public/file.csv', csv, function (err) {
-           if (err) throw err;
-           console.log('file saved');
-       });
+        var objs = {
+            "age": age,
+            "house": house,
+            "burglary": burglary,
+            "riskCovered": riskCovered
+        };
+        var fields = ['age', 'house', 'burglary', 'riskCovered'];
+        var csv = json2csv({ data: objs, fields: fields });
+        fs.writeFile('public/file.csv', csv, function (err) {
+            if (err) throw err;
+            console.log('file saved');
+        });
         // return res.json({
-    //    "messages": [
-    //        {
+        //    "messages": [
+        //        {
 
         //            "platform": "google",
         //            "displayText": "http://localhost:8000/download",
-    //            "textToSpeech": "The quotations available are",
-    //            "type": "simple_response"
-    //        }]     
-    //     })
+        //            "textToSpeech": "The quotations available are",
+        //            "type": "simple_response"
+        //        }]     
+        //     })
         // JSON to CSV close
         return res.json({
             "messages": [
@@ -144,7 +144,7 @@ restService.post('/insuranceinfo', function (req, res) {
                                     "object two"
                                 ]
                             },
-                            "title": "LIC Life Insurance"        
+                            "title": "LIC Life Insurance"
                         }
                     ],
                     "platform": "google",
@@ -166,14 +166,17 @@ restService.post('/insuranceinfo', function (req, res) {
     //Download file
     if (req.body.result.action == "download") {
         return res.json({
-           
-       "messages": [
-           {
-                   "platform": "google",
-                   "displayText": "https://insurance-bott.herokuapp.com/download",
-               "textToSpeech": "The quotations available are",
-               "type": "simple_response"
-           }]     
+
+            speech: "Go to the link",
+            displayText: "https://insurance-bott.herokuapp.com/download",
+            source: 'insurance-bot',
+            // "messages": [
+            //     {
+            //         "platform": "google",
+            //         "displayText": "https://insurance-bott.herokuapp.com/download",
+            //         "textToSpeech": "The quotations available are",
+            //         "type": "simple_response"
+            //     }]
         })
     }
 
