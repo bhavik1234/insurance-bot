@@ -2,12 +2,42 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const restService = express();
-
+var json2csv = require('json2csv');
+var fs = require('fs');
 restService.use(bodyParser.urlencoded({
     extended: true
 }));
 restService.use(bodyParser.json());
+restService.set("view options", { layout: false });
+restService.use(express.static(__dirname + '/public'));
 
+var fields = ['car', 'price', 'color'];
+var myCars = [
+    {
+        "car": "Audi",
+        "price": 40000,
+        "color": "blue"
+    }, {
+        "car": "BMW",
+        "price": 35000,
+        "color": "black"
+    }, {
+        "car": "Porsche",
+        "price": 60000,
+        "color": "green"
+    }
+];
+var csv = json2csv({ data: myCars, fields: fields });
+
+fs.writeFile('public/file.csv', csv, function (err) {
+    if (err) throw err;
+    console.log('file saved');
+});
+
+
+restService.get('/download', function (req, res) {
+    res.sendfile(__dirname + '/public/file.csv');
+});
 
 // demo api
 //Name of brands
@@ -77,7 +107,28 @@ restService.post('/insuranceinfo', function (req, res) {
         let burglary = req.body.result.parameters['Burglary'];
         let riskCovered = req.body.result.parameters['RiskCovered'];
         // JSON to CSV
-       
+       var objs ={
+           "age":age,
+           "house": house,
+           "burglary": burglary,
+           "riskCovered": riskCovered
+       };
+       var fields = ['age', 'house', 'burglary','riskCovered'];
+       var csv = json2csv({ data: objs, fields: fields });
+       fs.writeFile('public/file.csv', csv, function (err) {
+           if (err) throw err;
+           console.log('file saved');
+       });
+        // return res.json({
+    //    "messages": [
+    //        {
+
+        //            "platform": "google",
+        //            "displayText": "http://localhost:8000/download",
+    //            "textToSpeech": "The quotations available are",
+    //            "type": "simple_response"
+    //        }]     
+    //     })
         // JSON to CSV close
         return res.json({
             "messages": [
@@ -133,6 +184,20 @@ restService.post('/insuranceinfo', function (req, res) {
                 "name": "WELCOME"
             }
         });
+    }
+
+    //Download file
+    if (req.body.result.action == "download") {
+        return res.json({
+           
+       "messages": [
+           {
+                   "platform": "google",
+                   "displayText": "https://insurance-bott.herokuapp.com/download",
+               "textToSpeech": "The quotations available are",
+               "type": "simple_response"
+           }]     
+        })
     }
 
 })
