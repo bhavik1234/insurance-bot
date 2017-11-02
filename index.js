@@ -2,8 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const restService = express();
-const json2csv = require('json2csv');
-const fs = require('fs');
+
 restService.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -78,28 +77,7 @@ restService.post('/insuranceinfo', function (req, res) {
         let burglary = req.body.result.parameters['Burglary'];
         let riskCovered = req.body.result.parameters['RiskCovered'];
         // JSON to CSV
-        var fields = ['car', 'price', 'color'];
-        var myCars = [
-            {
-                "car": "Audi",
-                "price": 40000,
-                "color": "blue"
-            }, {
-                "car": "BMW",
-                "price": 35000,
-                "color": "black"
-            }, {
-                "car": "Porsche",
-                "price": 60000,
-                "color": "green"
-            }
-        ];
-        var csv = json2csv({ data: myCars, fields: fields });
-
-        fs.writeFile('file.csv', csv, function (err) {
-            if (err) throw err;
-            console.log('file saved');
-        });
+       
         // JSON to CSV close
         return res.json({
             "messages": [
