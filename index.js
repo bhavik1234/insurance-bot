@@ -65,34 +65,65 @@ restService.post('/insuranceinfo', function (req, res) {
                         }
                     ],
                     "type": "suggestion_chips"
-                },
-                {
-
-                    "displayText": "Select one",
-                    "platform": "google",
-                    "textToSpeech": "Select One",
-                    "type": "simple_response"
-                },
-                {
-                    "platform": "google",
-                    "suggestions": [
-                        {
-                            "title": "Cars"
-                        },
-                        {
-                            "title": "Bikes"
-                        },
-                        {
-                            "title": "Homes"
-                        }
-                    ],
-                    "type": "suggestion_chips"
                 }
             ]
         });
     }
 
+    // Insurance Data
+    if (req.body.result.action == "InsuranceData") {
+        let  age = req.body.result.parameters['Age'];
+        let house = req.body.result.parameters['House'];
+        let burglary = req.body.result.parameters['Burglary'];
+        let riskCovered = req.body.result.parameters['RiskCovered'];
+        return res.json({
+            "messages": [
+                {
 
+                    "displayText": "The quotations available are",
+                    "platform": "google",
+                    "textToSpeech": "The quotations available are",
+                    "type": "simple_response"
+                },
+                {
+                    "items": [
+                        {
+                            "description": "Quote 1",
+                            "image": {
+                                "url": "http://static.sify.com/cms/image/ohvpxadacbjci.jpg"
+                            },
+                            "optionInfo": {
+                                "key": "itemOne",
+                                "synonyms": [
+                                    "thing one",
+                                    "object one"
+                                ]
+                            },
+                            "title": "Option One Title"
+                        },
+                        {
+                            "description": "Option Two Description",
+                            "image": {
+                                "url": "http://1.bp.blogspot.com/_5j_axJRogXw/TBNoyybUpyI/AAAAAAAAABU/mv77_DQxJhU/s1600/LIC_Logo.jpg"
+                            },
+                            "optionInfo": {
+                                "key": "itemTwo",
+                                "synonyms": [
+                                    "thing two",
+                                    "object two"
+                                ]
+                            },
+                            "title": "Option Two Title"
+                        }
+                    ],
+                    "platform": "google",
+                    "type": "carousel_card"
+                }
+            ]
+        });
+    }
+
+    // Insurance Data
     if (req.body.result.action == "NoIntent") {
         return res.json({
             "followupEvent": {
