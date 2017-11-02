@@ -13,8 +13,7 @@ restService.use(express.static(__dirname + '/public'));
 
 
 restService.get('/download', function (req, res) {
-    res.set({'Content-Type': 'application/plain'});
-    res.sendfile(__dirname + '/public/file.csv');
+    res.redirect("/file.csv");
 });
 
 // demo api
