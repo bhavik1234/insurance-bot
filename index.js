@@ -88,7 +88,7 @@ restService.post('/insuranceinfo', function (req, res) {
                 {
                     "items": [
                         {
-                            "description": "Quote 1",
+                            "description": "Premium Rs 10,000 \n"+age,
                             "image": {
                                 "url": "http://static.sify.com/cms/image/ohvpxadacbjci.jpg"
                             },
@@ -99,7 +99,7 @@ restService.post('/insuranceinfo', function (req, res) {
                                     "object one"
                                 ]
                             },
-                            "title": "Option One Title"
+                            "title": "Kotak Life Insurance"
                         },
                         {
                             "description": "Option Two Description",
