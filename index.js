@@ -15,7 +15,7 @@ restService.use(express.static(__dirname + '/public'));
 
 
 restService.get('/download', function (req, res) {
-    res.sendFile("/file.csv");
+    res.redirect("/file.csv");
 });
 
 // demo api
@@ -160,7 +160,91 @@ restService.post('/insuranceinfo', function (req, res) {
         });
     }
 
-    // Insurance Data
+    // Insurance Data close
+    // Bike Data new
+    if (req.body.result.action == "BikeData") {
+        let RegisteredUnder = req.body.result.parameters['RegisteredUnder'];
+        let name = req.body.result.parameters['any'];
+        let geocity = req.body.result.parameters['geo-city'];
+        let date = req.body.result.parameters['date'];
+        let BikeBrand = req.body.result.parameters['BikeBrand'];
+
+        // Csv to pdf
+
+
+        // JSON to CSV
+        let objs = {
+            "RegisteredUnder": RegisteredUnder,
+            "name": name,
+            "geocity": geocity,
+            "date": date,
+            "BikeBrand": BikeBrand
+        };
+        let fields = ['RegisteredUnder', 'name', 'geocity', 'date','BikeBrand'];
+        let csv = json2csv({ data: objs, fields: fields });
+        fs.writeFile('public/bike.csv', csv, function (err) {
+            if (err) throw err;
+            console.log('file saved');
+        });
+        // return res.json({
+        //    "messages": [
+        //        {
+
+        //            "platform": "google",
+        //            "displayText": "http://localhost:8000/download",
+        //            "textToSpeech": "The quotations available are",
+        //            "type": "simple_response"
+        //        }]     
+        //     })
+        // JSON to CSV close
+        return res.json({
+            "messages": [
+                {
+
+                    "displayText": "The quotations available are",
+                    "platform": "google",
+                    "textToSpeech": "The quotations available are",
+                    "type": "simple_response"
+                },
+                {
+                    "items": [
+                        {
+                            "description": "Premium Rs 5,000 ",
+                            "image": {
+                                "url": "http://static.sify.com/cms/image/ohvpxadacbjci.jpg"
+                            },
+                            "optionInfo": {
+                                "key": "itemOne",
+                                "synonyms": [
+                                    "thing one",
+                                    "object one"
+                                ]
+                            },
+                            "title": "Kotak Life Insurance"
+                        },
+                        {
+                            "description": "Premium Rs 1000",
+                            "image": {
+                                "url": "http://1.bp.blogspot.com/_5j_axJRogXw/TBNoyybUpyI/AAAAAAAAABU/mv77_DQxJhU/s1600/LIC_Logo.jpg"
+                            },
+                            "optionInfo": {
+                                "key": "itemTwo",
+                                "synonyms": [
+                                    "thing two",
+                                    "object two"
+                                ]
+                            },
+                            "title": "LIC Life Insurance"
+                        }
+                    ],
+                    "platform": "google",
+                    "type": "carousel_card"
+                }
+            ]
+        });
+    }
+    // BIke data close
+// Follow up intent
     if (req.body.result.action == "NoIntent") {
         return res.json({
             "followupEvent": {
@@ -172,7 +256,6 @@ restService.post('/insuranceinfo', function (req, res) {
     //Download file
     if (req.body.result.action == "download") {
         return res.json({
-
             "messages": [
                 {
 
@@ -188,10 +271,7 @@ restService.post('/insuranceinfo', function (req, res) {
                     "url": "https://insurance-bott.herokuapp.com/download"
                 }
             ]
-            /* Use this
-            speech: "Go to the link",
-             displayText: "https://insurance-bott.herokuapp.com/download",
-            source: 'insurance-bot',*/
+        
             // "messages": [
             //     {
             //         "platform": "google",
