@@ -90,7 +90,7 @@ restService.post('/insuranceinfo', function (req, res) {
         let riskCovered = req.body.result.parameters['RiskCovered'];
 
         // Csv to pdf
-       
+
 
         // JSON to CSV
         let objs = {
@@ -173,8 +173,8 @@ restService.post('/insuranceinfo', function (req, res) {
         let BikeBrand = req.body.result.parameters['BikeBrand'];
 
 
-        
-       
+
+
         let objs = {
             "RegisteredUnder": RegisteredUnder,
             "name": name,
@@ -182,7 +182,7 @@ restService.post('/insuranceinfo', function (req, res) {
             "date": date,
             "BikeBrand": BikeBrand
         };
-        let fields = ['RegisteredUnder', 'name', 'geocity', 'date','BikeBrand'];
+        let fields = ['RegisteredUnder', 'name', 'geocity', 'date', 'BikeBrand'];
         let csv = json2csv({ data: objs, fields: fields });
         fs.writeFile('public/bike.csv', csv, function (err) {
             if (err) throw err;
@@ -241,12 +241,18 @@ restService.post('/insuranceinfo', function (req, res) {
                     ],
                     "platform": "google",
                     "type": "carousel_card"
+                },
+                {
+                    "destinationName": "File",
+                    "platform": "google",
+                    "type": "link_out_chip",
+                    "url": "https://insurance-bott.herokuapp.com/DownloadBike"
                 }
             ]
         });
     }
     // BIke data close
-// Follow up intent
+    // Follow up intent
     if (req.body.result.action == "NoIntent") {
         return res.json({
             "followupEvent": {
@@ -273,7 +279,7 @@ restService.post('/insuranceinfo', function (req, res) {
                     "url": "https://insurance-bott.herokuapp.com/download"
                 }
             ]
-        
+
             // "messages": [
             //     {
             //         "platform": "google",
@@ -284,34 +290,7 @@ restService.post('/insuranceinfo', function (req, res) {
         })
     }
     // Download Bike
-    if (req.body.result.action == "DownloadBike") {
-        return res.json({
-            "messages": [
-                {
-
-                    "displayText": "Click on this link to download the file",
-                    "platform": "google",
-                    "textToSpeech": "Click on this link to download the file",
-                    "type": "simple_response"
-                },
-                {
-                    "destinationName": "File",
-                    "platform": "google",
-                    "type": "link_out_chip",
-                    "url": "https://insurance-bott.herokuapp.com/DownloadBike"
-                }
-            ]
-
-            // "messages": [
-            //     {
-            //         "platform": "google",
-            //         "displayText": "https://insurance-bott.herokuapp.com/download",
-            //         "textToSpeech": "The quotations available are",
-            //         "type": "simple_response"
-            //     }]
-        })
-    }
-
+   
 })
 
 // restService.post('/slack-test', function(req, res) {
