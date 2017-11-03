@@ -169,34 +169,7 @@ restService.post('/insuranceinfo', function (req, res) {
         let date = req.body.result.parameters['date'];
         let BikeBrand = req.body.result.parameters['BikeBrand'];
 
-        // Csv to pdf
 
-
-        // JSON to CSV
-        let objs = {
-            "RegisteredUnder": RegisteredUnder,
-            "name": name,
-            "geocity": geocity,
-            "date": date,
-            "BikeBrand": BikeBrand
-        };
-        let fields = ['RegisteredUnder', 'name', 'geocity', 'date','BikeBrand'];
-        let csv = json2csv({ data: objs, fields: fields });
-        fs.writeFile('public/bike.csv', csv, function (err) {
-            if (err) throw err;
-            console.log('file saved');
-        });
-        // return res.json({
-        //    "messages": [
-        //        {
-
-        //            "platform": "google",
-        //            "displayText": "http://localhost:8000/download",
-        //            "textToSpeech": "The quotations available are",
-        //            "type": "simple_response"
-        //        }]     
-        //     })
-        // JSON to CSV close
         return res.json({
             "messages": [
                 {
@@ -205,43 +178,79 @@ restService.post('/insuranceinfo', function (req, res) {
                     "platform": "google",
                     "textToSpeech": "The quotations available are",
                     "type": "simple_response"
-                },
-                {
-                    "items": [
-                        {
-                            "description": "Premium Rs 5,000 ",
-                            "image": {
-                                "url": "http://static.sify.com/cms/image/ohvpxadacbjci.jpg"
-                            },
-                            "optionInfo": {
-                                "key": "itemOne",
-                                "synonyms": [
-                                    "thing one",
-                                    "object one"
-                                ]
-                            },
-                            "title": "Kotak Life Insurance"
-                        },
-                        {
-                            "description": "Premium Rs 1000",
-                            "image": {
-                                "url": "http://1.bp.blogspot.com/_5j_axJRogXw/TBNoyybUpyI/AAAAAAAAABU/mv77_DQxJhU/s1600/LIC_Logo.jpg"
-                            },
-                            "optionInfo": {
-                                "key": "itemTwo",
-                                "synonyms": [
-                                    "thing two",
-                                    "object two"
-                                ]
-                            },
-                            "title": "LIC Life Insurance"
-                        }
-                    ],
-                    "platform": "google",
-                    "type": "carousel_card"
                 }
             ]
-        });
+        })
+        // JSON to CSV
+        // let objs = {
+        //     "RegisteredUnder": RegisteredUnder,
+        //     "name": name,
+        //     "geocity": geocity,
+        //     "date": date,
+        //     "BikeBrand": BikeBrand
+        // };
+        // let fields = ['RegisteredUnder', 'name', 'geocity', 'date','BikeBrand'];
+        // let csv = json2csv({ data: objs, fields: fields });
+        // fs.writeFile('public/bike.csv', csv, function (err) {
+        //     if (err) throw err;
+        //     console.log('file saved');
+        // });
+        // // return res.json({
+        // //    "messages": [
+        // //        {
+
+        // //            "platform": "google",
+        // //            "displayText": "http://localhost:8000/download",
+        // //            "textToSpeech": "The quotations available are",
+        // //            "type": "simple_response"
+        // //        }]     
+        // //     })
+        // // JSON to CSV close
+        // return res.json({
+        //     "messages": [
+        //         {
+
+        //             "displayText": "The quotations available are",
+        //             "platform": "google",
+        //             "textToSpeech": "The quotations available are",
+        //             "type": "simple_response"
+        //         },
+        //         {
+        //             "items": [
+        //                 {
+        //                     "description": "Premium Rs 5,000 ",
+        //                     "image": {
+        //                         "url": "http://static.sify.com/cms/image/ohvpxadacbjci.jpg"
+        //                     },
+        //                     "optionInfo": {
+        //                         "key": "itemOne",
+        //                         "synonyms": [
+        //                             "thing one",
+        //                             "object one"
+        //                         ]
+        //                     },
+        //                     "title": "Kotak Life Insurance"
+        //                 },
+        //                 {
+        //                     "description": "Premium Rs 1000",
+        //                     "image": {
+        //                         "url": "http://1.bp.blogspot.com/_5j_axJRogXw/TBNoyybUpyI/AAAAAAAAABU/mv77_DQxJhU/s1600/LIC_Logo.jpg"
+        //                     },
+        //                     "optionInfo": {
+        //                         "key": "itemTwo",
+        //                         "synonyms": [
+        //                             "thing two",
+        //                             "object two"
+        //                         ]
+        //                     },
+        //                     "title": "LIC Life Insurance"
+        //                 }
+        //             ],
+        //             "platform": "google",
+        //             "type": "carousel_card"
+        //         }
+        //     ]
+        // });
     }
     // BIke data close
 // Follow up intent
