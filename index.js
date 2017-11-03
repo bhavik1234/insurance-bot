@@ -17,6 +17,9 @@ restService.use(express.static(__dirname + '/public'));
 restService.get('/download', function (req, res) {
     res.redirect("/file.csv");
 });
+restService.get('/DownloadBike', function (req, res) {
+    res.redirect("/bike.csv");
+});
 
 // demo api
 //Name of brands
@@ -271,6 +274,34 @@ restService.post('/insuranceinfo', function (req, res) {
                 }
             ]
         
+            // "messages": [
+            //     {
+            //         "platform": "google",
+            //         "displayText": "https://insurance-bott.herokuapp.com/download",
+            //         "textToSpeech": "The quotations available are",
+            //         "type": "simple_response"
+            //     }]
+        })
+    }
+    // Download Bike
+    if (req.body.result.action == "DownloadBike") {
+        return res.json({
+            "messages": [
+                {
+
+                    "displayText": "Click on this link to download the file",
+                    "platform": "google",
+                    "textToSpeech": "Click on this link to download the file",
+                    "type": "simple_response"
+                },
+                {
+                    "destinationName": "File",
+                    "platform": "google",
+                    "type": "link_out_chip",
+                    "url": "https://insurance-bott.herokuapp.com/DownloadBike"
+                }
+            ]
+
             // "messages": [
             //     {
             //         "platform": "google",
