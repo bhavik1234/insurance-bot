@@ -170,21 +170,22 @@ restService.post('/insuranceinfo', function (req, res) {
             "messages": [
                 {
 
-                    "displayText": "Hey",
+                    "displayText": "Click on this link to download the file",
                     "platform": "google",
-                    "textToSpeech": "Hey",
+                    "textToSpeech": "Click on this link to download the file",
                     "type": "simple_response"
                 },
                 {
                     "destinationName": "Destination Name",
                     "platform": "google",
-                    "type": "Go to the link to download the file",
+                    "type": "link_out_chip",
                     "url": "https://insurance-bott.herokuapp.com/download"
                 }
             ]
-            // speech: "Go to the link",
-            // displayText: "https://insurance-bott.herokuapp.com/download",
-            // source: 'insurance-bot',
+            /* Use this
+            speech: "Go to the link",
+             displayText: "https://insurance-bott.herokuapp.com/download",
+            source: 'insurance-bot',*/
             // "messages": [
             //     {
             //         "platform": "google",
