@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
 const restService = express();
@@ -12,8 +12,10 @@ restService.set("view options", { layout: false });
 restService.use(express.static(__dirname + '/public'));
 
 
+
+
 restService.get('/download', function (req, res) {
-    res.redirect("/file.csv");
+    res.sendFile("/file.csv");
 });
 
 // demo api
@@ -83,6 +85,10 @@ restService.post('/insuranceinfo', function (req, res) {
         let house = req.body.result.parameters['House'];
         let burglary = req.body.result.parameters['Burglary'];
         let riskCovered = req.body.result.parameters['RiskCovered'];
+
+        // Csv to pdf
+       
+
         // JSON to CSV
         let objs = {
             "age": age,
@@ -176,7 +182,7 @@ restService.post('/insuranceinfo', function (req, res) {
                     "type": "simple_response"
                 },
                 {
-                    "destinationName": "Destination Name",
+                    "destinationName": "File",
                     "platform": "google",
                     "type": "link_out_chip",
                     "url": "https://insurance-bott.herokuapp.com/download"
